@@ -1,17 +1,19 @@
-import express from "express";
-import schoolRouter from "./routes/school";
+import app from "./app";
+import env from "./env";
 
-require("dotenv").config();
-const cors = require("cors");
-const app = express();
+const port = env.PORT;
 
-app.use(cors());
-
-const PORT = process.env.PORT || 8000;
-
-app.use(express.json());
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`); // Log a message indicating the server is running
+app.listen(port, () => {
+  console.log(`🚀 Server running on http://localhost:${port}`);
+  console.log(
+    `📚 API Documentation available at http://localhost:${port}/docs`
+  );
+  console.log(
+    `🔧 OpenAPI spec available at http://localhost:${port}/docs/openapi.json`
+  );
 });
 
-app.use("/api/v1", schoolRouter);
+// Test your endpoints
+console.log("🧪 Test your API:");
+console.log(`curl http://localhost:${port}/api/products`);
+console.log(`curl http://localhost:${port}/health`);
